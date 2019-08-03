@@ -1,0 +1,58 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>Find Max</title>
+    <meta charset="utf-8" />
+    <script type='text/javascript'>        
+        var arrTest = new Array(3, 2, 6, 5, 4, 2, 1, 3, 7, 5, 4, 4, 3);
+        function arrView() {
+            document.getElementById('txtarrTestAll').value = arrTest
+        }
+        function searchMax() {
+            var max = arrTest[0];       //sets "max" to the first term
+            var arrNo = 0;              // sets the element No
+            var i = 0;    //declares the increment "i" as an integer, initially 0
+            for (i; i < arrTest.length; i++) {
+                if (arrTest[i] > max) {
+                    max = arrTest[i];
+                    arrNo = i + 1;
+                }
+                document.getElementById('txtArrLength').value = "The array has " + arrTest.length + " elements.";
+                document.getElementById('txtSearchResult').value = "Maximum is element # " + arrNo + " which is " + max;
+            }
+        }
+                function searchMin() {
+            var min = arrTest[0];       //sets "max" to the first term
+            var arrNo = 0;              // sets the element No
+            var i = 0;    //declares the increment "i" as an integer, initially 0
+            for (i; i < arrTest.length; i++) {
+                if (arrTest[i] < min) {
+                    min = arrTest[i];
+                    arrNo = i + 1;
+                }
+                document.getElementById('txtArrLength').value = "The array has " + arrTest.length + " elements.";
+                document.getElementById('txtSearchResult').value = "Minimum is element # " + arrNo + " which is " + min;
+            }
+        }
+    </script>
+</head>
+<body onload="arrView()">
+    <form id="input">
+        <h1>Find Maximum of an array</h1>
+        <p>Here is a hard coded sample array:<br />
+          <textarea id="txtarrTestAll" rows="4" cols="35"></textarea>
+          <br /><br />
+        <input id="btnFind" type="Button" value="Find Max" onclick="searchMax()" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input id="btnFindMin" type="Button" value="Find Min" onclick="searchMin()" /><br />
+        <textarea id="txtArrLength" rows="1" cols="35"></textarea>
+        <br /><br />
+        The element you are looking for is:<br />
+        <textarea id="txtSearchResult" rows="1" cols="35"></textarea>
+        <br /> 
+        </p>
+        <p>Link to a<a href="arrSearch.html" target="_blank"> text linear search</a>:</p>
+        <p>Link to an <a href="insertion" target="_blank">Insertion</a>:<br />
+        </p>
+    </form>
+</body>
+</html>

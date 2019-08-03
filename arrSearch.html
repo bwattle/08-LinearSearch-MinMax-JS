@@ -1,0 +1,48 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>Murgatroid</title>
+    <meta charset="utf-8" />
+    <script type='text/javascript'>        
+        var people = new Array("Ted", "Bill", "Jill", "Fred", "Donald",
+            "Barack", "Oprah", "Elvis", "Angelina", "Shakira", "Kanye", "Kim");
+        function ArrView() {
+            document.getElementById('txtPeopleAll').value = people
+        }
+        function search() {
+            var arrNo = document.getElementById('txtArrNo').value;
+            var found = false;        //declares "found" as a boolean, initially false
+            var i = 0;          //declares the increment "i" as an integer, initially 0
+            for (i; i < people.length; i++) {
+                if (people[i] == document.getElementById('txtNameToFind').value) {
+                    found = true;
+                    arrNo = i;
+                }
+                document.getElementById('txtArrLength').value = "The array has " + people.length + " elements.";
+                document.getElementById('txtSearchResult').value = (people[arrNo]) + " is element # " + arrNo;
+                document.getElementById('txtFound').value = found;
+            }
+        }
+    </script>
+</head>
+<body onload="ArrView()">
+    <form id="input">
+        <h1>Linear search</h1>
+        Here is a hard coded sample array:<br />
+        <textarea id="txtPeopleAll" rows="4" cols="35"></textarea><br />
+        Find the element with
+        array number:<br />
+        <textarea id="txtArrNo" rows="1" cols="35"></textarea><br />
+        Find the element with name:<br />
+        <textarea id="txtNameToFind" rows="1" cols="35" name="S1"></textarea><br />
+        <input id="btnFind" type="Button" value="Find" onclick="search()" />
+        <br />
+        <textarea id="txtArrLength" rows="1" cols="35"></textarea><br />
+        The element you are looking for is
+        <textarea id="txtSearchResult" rows="1" cols="35"></textarea><br />
+        The boolean &quot;found&quot; is:
+        <textarea id="txtFound" rows="1" cols="35"></textarea><br />
+        <br />
+    </form>
+</body>
+</html>

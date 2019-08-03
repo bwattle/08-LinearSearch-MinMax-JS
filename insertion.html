@@ -1,0 +1,105 @@
+﻿<!--From <https://www.w3resource.com/javascript-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-4.php> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript program of Insertion sort</title>
+    <script type='text/javascript'>  
+        //var arrToSort = new Array(6, 5, 3, 1, 8, 7, 2, 4);         // default array               // same as animation below
+        //var arrToSort = new Array(3, 0, 2, 5, -1, 4, 1);                                          // has negatives
+        //var arrToSort = new Array(14, 5, 6, 8, 16, 10, 8, 15, 17, 15);                            // has a repeated 8
+        var arrToSort = new Array("cat", "dog", "Donald", "bird", "baker", "candle stick maker")    // has upper case and lower case for text sort
+        function arrView() {                        // load defaults
+            document.getElementById('arrEntered').value = arrToSort;                                // load default array
+            document.getElementById('arrCount').defaultValue = 20;                                  // load default # of elements
+            document.getElementById('arrMax').defaultValue = 15;                                    // load default Maximum element value
+        }
+        function randomArr() {                      // generates a random array for quick testing
+            arrSize = document.getElementById('arrCount').value
+            for (var k = 0; k < arrSize; k++) {
+                arrToSort[k] = Math.floor(Math.random() * (document.getElementById('arrMax').value) + 1);  // random # (from 0 to 1) * arrMax (+1 for no 0)
+            }
+            document.getElementById('arrEntered').value = arrToSort;
+        }
+        function insertion_Sort() {                 // main function which loads to text boxes. Final line not needed
+            var temp = 1;                                                   // used for the current term of the array
+            var pass = 0;                                                   // count of passes for stats
+            var swap = 0;                                                   // count of swaps for stats
+            var txtPasses = "";                                             // text built up to show each pass
+            arr = document.getElementById('arrEntered').value.split(",");   //fetch array from text box as it may have been edited
+            if (chkTxt.checked !== true) {          // only runs if checkbox checked
+                for (var i = 0; i < arr.length; i++) {
+                    arr[i] = parseInt(arr[i]);                              // elements are converted to numbers 1 by 1
+                }
+            }
+            for (var i = 1; i < arr.length; i++) {                          // for ALL elements
+                if (arr[i] < arr[0]) {              //move current element to the first position if it's smaller than arr[0]
+                    for (var k = 0; k < i; k++) {                           // standard "swap" routine to shift all elements 1 place to the right
+                        temp = arr[i];                                      // save the current element as "temp"
+                        arr[i] = arr[k];                                    // make the 2nd last = last and shuffle along
+                        arr[k] = temp;                                      // make the first = to "temp"
+                        swap = swap + 1;                                    // count of swaps
+                    }
+                }
+                else if (arr[i] > arr[i - 1]) {     // if current element is larger than previous
+                    continue;                                               // leave current element where it is
+                }
+                else {                              // find where element should go
+                    temp = arr[i];                                  // save the last element as "temp"
+                    for (var j = 0; j < i - 1; j++) {               // repeat for all the elements before "temp"
+                        if (temp < arr[i - j - 1]) {                // if "temp" is less than the element, swap the elements
+                            arr[i - j] = arr[i - j - 1]             // move the value to the right 1 place where "temp" currently is
+                            arr[i - j - 1] = temp;                  // paste the "temp" value to the left    
+                            swap = swap + 1;                        // keep count of the swaps
+                        }                                           // repeat this "swap" routine until temp is bigger than the previous element
+                    }
+                }
+                pass = pass + 1;                                    // keep count of the passes
+                txtPasses = txtPasses +  arr + "  -" + "P" + pass + " S" + swap + "\n"              // pass & swap count with line break at the end
+            }
+            document.getElementById('txtFound').value = arr;        // insert the sorted array
+            document.getElementById('txtStats').value = "Passes = " + pass + " Swaps = " + swap;    // insert the statistics
+            document.getElementById('txtPasses').value = txtPasses; // insert the string containining the order of each pass
+            return arr;                                             // NOT NEEDED HERE!!   Use if the function is called, maybe by a message box
+        }
+    </script>
+</head>
+<body onload="arrView()">
+    <form id="input">
+        <h1>Insertion Sort</h1>
+        <h2>Numeric or Text sort (check box to see the difference)</h2>
+        # of elements:&nbsp;&nbsp;
+        <textarea id="arrCount" rows="1" cols="3"></textarea>
+        &nbsp;&nbsp;    Max element #:&nbsp;&nbsp; 
+        <textarea id="arrMax" rows="1" cols="3"></textarea>
+        <br />
+        <br />
+        <input id="btnFind0" type="Button" value="Generate random array" onclick="randomArr()" /><br />
+        Check if data is text 
+          <input id="chkTxt" type="checkbox">
+        <br />
+        Here is a hard coded unsorted array:<br />
+        <textarea id="arrEntered" rows="2" cols="100"></textarea>
+        <br />
+        <br />
+        <input id="btnSort" type="Button" value="Sort by Inserting" onclick="insertion_Sort()" /><br />
+        <br />
+        The sorted array is:<br />
+        <textarea id="txtFound" rows="2" cols="100"></textarea>
+        <br />
+        <br />
+        Stats:<br />
+        <textarea id="txtStats" rows="1" cols="100"></textarea>
+        <br />
+        Passes (-P):<br />
+        <textarea id="txtPasses" rows="20" cols="100"></textarea>
+        <br />
+        <br />
+        The animation below shows the steps in this sort:<br />
+        <img src="Insertion-sort-animation.gif" width="300" height="180" alt="" />
+        <br />
+        The animation is from:
+        <a href="https://www.w3resource.com/javascript-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-4.php">https://www.w3resource.com/javascript-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-4.php</a>
+        where there is a more comprehensive explanation of this &quot;Insertion sort&quot;.&nbsp; The code has been modified to remove the functions &quot;unshift&quot; and &quot;splice&quot;.</form>
+</body>
+</html>
