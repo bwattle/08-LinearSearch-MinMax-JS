@@ -9,11 +9,12 @@
             document.getElementById('txtarrTestAll').value = arrTest
         }
         function searchMax() {
+            arrTest = document.getElementById('txtarrTestAll').value.split(","); //fetch array from text box so it can be edited
             var max = arrTest[0];       //sets "max" to the first term
             var arrNo = 0;              // sets the element No
             var i = 0;    //declares the increment "i" as an integer, initially 0
             for (i; i < arrTest.length; i++) {
-                if (arrTest[i] > max) {
+                if (parseInt(arrTest[i]) > max) {
                     max = arrTest[i];
                     arrNo = i + 1;
                 }
@@ -21,12 +22,13 @@
                 document.getElementById('txtSearchResult').value = "Maximum is element # " + arrNo + " which is " + max;
             }
         }
-                function searchMin() {
+        function searchMin() {
+            arrTest = document.getElementById('txtarrTestAll').value.split(","); //fetch array from text box so it can be edited
             var min = arrTest[0];       //sets "max" to the first term
             var arrNo = 0;              // sets the element No
             var i = 0;    //declares the increment "i" as an integer, initially 0
             for (i; i < arrTest.length; i++) {
-                if (arrTest[i] < min) {
+                if (parseInt(arrTest[i]) < min) {
                     min = arrTest[i];
                     arrNo = i + 1;
                 }
@@ -39,20 +41,21 @@
 <body onload="arrView()">
     <form id="input">
         <h1>Find Maximum of an array</h1>
-        <p>Here is a hard coded sample array:<br />
-          <textarea id="txtarrTestAll" rows="4" cols="35"></textarea>
-          <br /><br />
-        <input id="btnFind" type="Button" value="Find Max" onclick="searchMax()" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <p>
+            Here is a hard coded sample array:<br />
+            <textarea id="txtarrTestAll" rows="4" cols="50"></textarea>
+            <br />
+            <br />
+            <input id="btnFind" type="Button" value="Find Max" onclick="searchMax()" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input id="btnFindMin" type="Button" value="Find Min" onclick="searchMin()" /><br />
-        <textarea id="txtArrLength" rows="1" cols="35"></textarea>
-        <br /><br />
-        The element you are looking for is:<br />
-        <textarea id="txtSearchResult" rows="1" cols="35"></textarea>
-        <br /> 
+            <textarea id="txtArrLength" rows="1" cols="50"></textarea>
+            <br />
+            <br />
+            The element you are looking for is:<br />
+            <textarea id="txtSearchResult" rows="1" cols="50"></textarea>
+            <br />
         </p>
-        <p>Link to a<a href="arrSearch.html" target="_blank"> text linear search</a>:</p>
-        <p>Link to an <a href="insertion" target="_blank">Insertion</a> sort - note the effect of upper case letters:<br />
-        </p>
+        <p>Link to a<a href="https://bwattle.github.io/08-LinearSearch-MinMax-JS/arrSearch.html" target="_blank"> text linear search</a>:</p>
     </form>
 </body>
 </html>
